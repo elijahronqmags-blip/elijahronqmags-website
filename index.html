@@ -8,7 +8,7 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-image: url("Background WB.png");
+      background-image: url("images/Background.png.png"); /* ✅ renamed */
       background-size: cover;       
       background-repeat: no-repeat; 
       background-attachment: fixed; 
@@ -255,7 +255,7 @@
 
     <!-- Center logo -->
     <div class="header-center">
-      <img src="Teen_Titans_Go!_horizontal_logo.svg.png" alt="Logo" class="logo">
+      <img src="Teen_Titans_Go_horizontal_logo.png" alt="Logo" class="logo"> <!-- ✅ renamed -->
     </div>
 
     <div class="nav-buttons">
@@ -274,7 +274,7 @@
         <div class="project">
           <h3>Uncertainty of Measurement🔑</h3>
           <p>
-            An uncertainty of measurement experiment in physics is an activity that determines how reliable and precise a measurement is by estimating the possible error or range within which the true value lies.
+            An uncertainty of measurement experiment in physics determines how reliable and precise a measurement is by estimating the possible error or range within which the true value lies.
           </p>
           <button class="btn ripple">View Project</button>
         </div>
@@ -307,25 +307,25 @@
       <h2>Members of IKEA Group</h2>
       <div class="members-grid">
         <div class="member-card">
-          <img src="Raven-removebg-preview.png" alt="Elijah" class="member-img">
+          <img src="Images/Raven.png.png" alt="Elijah" class="member-img"> <!-- ✅ shorter name -->
           <div class="member-info">
             <p><strong>Elijah R. Mag-usara</strong><br><em>Scriber ✍️</em></p>
           </div>
         </div>
         <div class="member-card">
-          <img src="Starfire-removebg-preview.png" alt="Ianna" class="member-img">
+          <img src="Images/Starfire.png.png" alt="Ianna" class="member-img">
           <div class="member-info">
             <p><strong>Ianna Fe Alferez</strong><br><em>Skipper 🚀</em></p>
           </div>
         </div>
         <div class="member-card">
-          <img src="Robin-removebg-preview.png" alt="Kurt" class="member-img">
+          <img src="Images/Robin.png.png" alt="Kurt" class="member-img">
           <div class="member-info">
             <p><strong>Kurt Yohan Del Corro</strong><br><em>Cracker 💥</em></p>
           </div>
         </div>
         <div class="member-card">
-          <img src="Beastboy-removebg-preview.png" alt="Arthur" class="member-img">
+          <img src="Images/Beastboy.png.png" alt="Arthur" class="member-img">
           <div class="member-info">
             <p><strong>Arthur Malazarte</strong><br><em>Digger ⚒️</em></p>
           </div>
@@ -376,7 +376,6 @@
 
     // Reveal member cards when scrolling into view
     const members = document.querySelectorAll('.member-card');
-
     const revealOnScroll = () => {
       members.forEach(member => {
         const rect = member.getBoundingClientRect();
@@ -385,7 +384,6 @@
         }
       });
     };
-
     window.addEventListener('scroll', revealOnScroll);
     window.addEventListener('load', revealOnScroll);
   </script>
