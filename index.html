@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Elijah Mag-usara — IKEA Physics Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-image: url("images/Background WB.png");
+      background-size: cover;       
+      background-repeat: no-repeat; 
+      background-attachment: fixed; 
+      background-position: center;  
+      color: #000000;
+    }
+
+    /* Header as Navbar */
+    header {
+      background: rgba(10, 61, 98, 0.9);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .header-left h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      font-family: "Arial Rounded MT Bold", Arial, sans-serif;
+      color: white;
+    }
+    .header-left p {
+      margin: 2px 0 0;
+      font-size: 0.9rem;
+      font-family: "Arial Rounded MT Bold", Arial, sans-serif;
+      color: white;
+    }
+
+    /* Center logo */
+    .header-center {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+    .header-center .logo {
+      height: 50px;
+      width: auto;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 15px;
+    }
+    .nav-buttons button {
+      background: transparent;
+      border: 2px solid #39ff14;
+      color: #39ff14;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .nav-buttons button:hover {
+      background: #39ff14;
+      color: #0a0f1a;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    section {
+      margin-bottom: 60px;
+    }
+
+    /* Subheadings */
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: white;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-bottom: 2px solid white;
+      padding-bottom: 6px;
+      font-family: "Arial Rounded MT Bold", Arial, sans-serif;
+    }
+
+    /* About Me box */
+    .about-box {
+      background: rgba(18, 26, 43, 0.9);
+      color: #eee;
+      padding: 20px;
+      border-radius: 12px;
+      border: 2px solid navy;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      line-height: 1.6;
+    }
+
+    /* Project cards */
+    .project-list {
+      display: grid;
+      gap: 16px;
+    }
+    .project {
+      background: rgba(18, 26, 43, 0.9);
+      color: #eee;
+      padding: 16px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .project h3 {
+      margin: 0 0 8px;
+      color: white;
+      font-weight: bold;
+    }
+    .project p {
+      margin: 0 0 12px;
+      color: #ddd;
+      line-height: 1.5;
+    }
+
+    /* Buttons inside project cards */
+    .btn {
+      position: relative;
+      display: inline-block;
+      margin-top: 5px;
+      padding: 12px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      background: linear-gradient(45deg, #39ff14, #2ecc40);
+      color: #0a0f1a;
+      font-weight: bold;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      overflow: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .btn:hover {
+      background: linear-gradient(45deg, #2ecc40, #27ae60);
+      color: #fff;
+    }
+
+    /* Locked project style */
+    .locked {
+      opacity: 0.6;
+      text-align: center;
+    }
+    .locked h3 {
+      color: #aaa;
+    }
+    .locked button {
+      background: #444;
+      border: 2px solid #666;
+      color: #bbb;
+      cursor: not-allowed;
+    }
+
+    /* Members grid */
+    .members-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      justify-items: center;
+      margin-top: 20px;
+    }
+    .member-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: transparent;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.6s ease;
+    }
+    .member-card.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .member-img {
+      width: 120px;
+      height: auto;
+      margin-bottom: 12px;
+      transition: transform 0.4s ease;
+    }
+    .member-card:hover .member-img {
+      transform: scale(1.1) rotate(3deg);
+    }
+    .member-info {
+      background: linear-gradient(135deg, navy, #0a3d62);
+      color: white;
+      padding: 12px;
+      border-radius: 10px;
+      text-align: center;
+      width: 180px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .member-card:hover .member-info {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+    }
+    .member-info p {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+    .member-info strong {
+      font-size: 1rem;
+      color: #39ff14;
+    }
+    .member-info em {
+      font-size: 0.85rem;
+      color: #eee;
+    }
+
+    /* Skills */
+    ul.skills {
+      list-style: none;
+      padding: 0;
+    }
+    ul.skills li {
+      background: rgba(18, 26, 43, 0.9);
+      color: #eee;
+      padding: 8px 12px;
+      margin: 6px 0;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(10, 61, 98, 0.9);
+      color: #39ff14;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Navbar -->
+  <header>
+    <div class="header-left">
+      <h1>G6 IKEA Physics Portfolio</h1>
+      <p>By Elijah Mag-usara | 12-Generosity</p>
+    </div>
+
+    <!-- Center logo -->
+    <div class="header-center">
+      <img src="images/Teen_Titans_Go!_horizontal_logo.svg.png" alt="Logo" class="logo">
+    </div>
+
+    <div class="nav-buttons">
+      <button data-target="projects">Projects & Activities</button>
+      <button data-target="members">Members</button>
+      <button data-target="about">About Me</button>
+      <button data-target="skills">Skills</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Projects Section -->
+    <section id="projects">
+      <h2>Projects & Activities</h2>
+      <div class="project-list">
+        <div class="project">
+          <h3>Uncertainty of Measurement🔑</h3>
+          <p>
+            An uncertainty of measurement experiment in physics is an activity that determines how reliable and precise a measurement is by estimating the possible error or range within which the true value lies.
+          </p>
+          <button class="btn ripple">View Project</button>
+        </div>
+        <div class="project">
+          <h3>Measurements Using A Vernier Caliper and Micrometer🔑</h3>
+          <p>
+            Measuring and determining an object’s length, diameter, or thickness with high precision by reading scales designed for very small divisions using Vernier Caliper and Micrometer.
+          </p>
+          <button class="btn ripple">View Project</button>
+        </div>
+
+        <!-- Locked projects -->
+        <div class="project locked">
+          <h3>Locked</h3>
+          <button class="btn">Coming Soon</button>
+        </div>
+        <div class="project locked">
+          <h3>Locked</h3>
+          <button class="btn">Coming Soon</button>
+        </div>
+        <div class="project locked">
+          <h3>Locked</h3>
+          <button class="btn">Coming Soon</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Members Section -->
+    <section id="members">
+      <h2>Members of IKEA Group</h2>
+      <div class="members-grid">
+        <div class="member-card">
+          <img src="images/Raven-removebg-preview.png" alt="Elijah" class="member-img">
+          <div class="member-info">
+            <p><strong>Elijah R. Mag-usara</strong><br><em>Scriber ✍️</em></p>
+          </div>
+        </div>
+        <div class="member-card">
+          <img src="images/Starfire-removebg-preview.png" alt="Ianna" class="member-img">
+          <div class="member-info">
+            <p><strong>Ianna Fe Alferez</strong><br><em>Skipper 🚀</em></p>
+          </div>
+        </div>
+        <div class="member-card">
+          <img src="images/Robin-removebg-preview.png" alt="Kurt" class="member-img">
+          <div class="member-info">
+            <p><strong>Kurt Yohan Del Corro</strong><br><em>Cracker 💥</em></p>
+          </div>
+        </div>
+        <div class="member-card">
+          <img src="images/Beastboy-removebg-preview.png" alt="Arthur" class="member-img">
+          <div class="member-info">
+            <p><strong>Arthur Malazarte</strong><br><em>Digger ⚒️</em></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about">
+      <h2>About Me</h2>
+      <div class="about-box">
+        <p>
+          I’m Elijah Mag-usara, a senior high school student and aspiring full-stack web developer with a strong passion for science and technology. 
+          This Physics portfolio highlights our collaborative group experiments, projects, and creative works that reflect both my love for coding and scientific exploration🎲.
+        </p>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+      <h2>Skills</h2>
+      <ul class="skills">
+        <li>Full Stack Web Developer💻</li>
+        <li>Resourceful with limited means💡</li>
+        <li>Generalist with diverse interests🎯</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Elijah Mag-usara — Portfolio Project</p>
+  </footer>
+
+  <script>
+    // Smooth scroll for nav buttons
+    document.querySelectorAll('.nav-buttons button').forEach(button => {
+      button.addEventListener('click', () => {
+        const targetId = button.getAttribute('data-target');
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+          window.scrollTo({
+            top: targetSection.offsetTop - 60,
+            behavior: "smooth"
+          });
+        }
+      });
+    });
+
+    // Reveal member cards when scrolling into view
+    const members = document.querySelectorAll('.member-card');
+
+    const revealOnScroll = () => {
+      members.forEach(member => {
+        const rect = member.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 50) {
+          member.classList.add('show');
+        }
+      });
+    };
+
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+  </script>
+</body>
+</html>
